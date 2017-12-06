@@ -1,43 +1,19 @@
-<!-- <div class="row">
-    <div class="col s12 m4" *ngFor="let product of userProducts; let i = index;">
-      <div class="card small">
-        <div class="card-image">
-          <img src="{{userProductImages.main_images[i].link.href}}">
-          <span class="card-title">{{product.name}}</span>
-        </div>
-        <div class="card-content">
-          <p>{{product.description}}</p>
-          
-        </div>
-        <div class="card-action">
-            <div class="row">
-                <form class="col s12">
-                  <div class="row">
-                    <div class="input-field col s6">
-                      <input id="icon_prefix" type="text" class="validate">
-                      <label for="icon_prefix">First Name</label>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            <a class="waves-effect waves-light btn" (click)="addProductToCart(product.id)"><i class="fa fa-cart-plus" aria-hidden="true"></i> &nbsp;Add to cart</a>
-        </div>
-      </div>
-    </div>
-
-  </div> -->
-
   <div class="row">
       <div class="col s12 m4" *ngFor="let product of userProducts; let i = index;">
-        <div class="card">
-          <div class="card-image">
-            <img src="{{userProductImages.main_images[i].link.href}}">
-            <span class="card-title">{{product.name}}</span>
-            <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="addProductToCart(product.id)"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-          </div>
-          <div class="card-content">
-            <p>{{product.description}}</p>
-          </div>
-        </div>
+        <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-title>{{product.name}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="{{userProductImages.main_images[i].link.href}}" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+              <p>
+                  {{product.description}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button (click)="addProductToCart(product.id)">Add to Cart</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+          </mat-card>
       </div>
     </div>

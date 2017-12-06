@@ -20,5 +20,16 @@ export class MoltinService {
   addProduct(productID){
     return this.Moltin.Cart().AddProduct(productID, 1).then(res => res);
   }
+  moltinCheckout(customer, address, billing){
+    return this.Moltin.Cart().Checkout(customer, address, billing);
+  }
+  moltinOrder(orderID){
+    return this.Moltin.Orders.Payment(orderID, {
+      gateway: "stripe",
+      method: "purchase",
+      payment: "tok_visa"
+    }).then(res => res);
+  }
+  
 
 }

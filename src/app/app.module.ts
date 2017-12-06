@@ -11,9 +11,12 @@ import { StoreFrontComponent } from './store-front/store-front.component';
 import { CheckoutComponent } from './checkout/checkout.component';  
 import { CartComponent } from './cart/cart.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import { MaterialModule } from './material.module';
+
 const appRoutes: Routes = [
-  {path : "", component:AppComponent},
-  {path : "store", component:StoreFrontComponent},
+  {path : "", component:StoreFrontComponent},
   {path : "checkout", component:CheckoutComponent},
   {path : "cart", component:CartComponent}
 ];
@@ -29,6 +32,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [MoltinService],
