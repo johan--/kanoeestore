@@ -28,7 +28,7 @@ export class CheckoutComponent implements OnInit {
       customerEmail : ['', [Validators.required]],
       billingAddressFirstname:  ['', [Validators.required]],
       billingAddressLastname:  ['', [Validators.required]],
-      billingAddressCompanyname:  ['', [Validators.required]],
+      billingAddressCompanyname:  ['', []],
       billingAddressLine1:  ['', [Validators.required]],
       billingAddressLine2:  ['', [Validators.required]],
       billingAddressCity:  ['', [Validators.required]],
@@ -37,14 +37,14 @@ export class CheckoutComponent implements OnInit {
       billingAddressCountry:  ['', [Validators.required]],
       shippingAddressFirstname:  ['', [Validators.required]],
       shippingAddressLastname:  ['', [Validators.required]],
-      shippingAddressCompanyname:  ['', [Validators.required]],
+      shippingAddressCompanyname:  ['', []],
       shippingAddressLine1:  ['', [Validators.required]],
       shippingAddressLine2:  ['', [Validators.required]],
       shippingAddressCity:  ['', [Validators.required]],
       shippingAddressPostcode:  ['', [Validators.required]],
       shippingAddressCounty:  ['', [Validators.required]],
       shippingAddressCountry:  ['', [Validators.required]],
-      shippingAddressInstructions:  ['', [Validators.required]]
+      shippingAddressInstructions:  ['', []]
     });
     this.stripeService.elements().subscribe( elements => {
       this.elements = elements;
@@ -105,6 +105,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   buy(){
+    this.stripeTest.value.customerName = `${this.stripeTest.value.billingAddressFirstname} ${this.stripeTest.value.billingAddressLastname}`;
     this.CustomerInfoAddress = {
       data: {
         customer: {
@@ -134,7 +135,7 @@ export class CheckoutComponent implements OnInit {
         }
       }
     }
-    this.stripeTest.value.customerName = `${this.stripeTest.value.billingAddressFirstname} ${this.stripeTest.value.billingAddressLastname}`;
+    
 
     if(this.isBillingChecked){
       this.CustomerInfoAddress.data.shipping_address.first_name = this.CustomerInfoAddress.data.billing_address.first_name ;
