@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="row">
-      <form class="col s12" (ngSubmit)="submitUser()">
+      <form novalidate (ngSubmit)="buy($event)" [formGroup]="stripeTest">
           <div class="useShipping">
               <mat-slide-toggle [checked]="isBillingChecked" name="slideToggle" (change)="onChange($event)" >Use Biiling Address as Shipping Address</mat-slide-toggle>
           </div>
@@ -11,48 +11,48 @@
             <tr class="fourths">
               <td>
                   <mat-form-field>
-                    <input matInput id="first_name" type="text" [(ngModel)]="CustomerInfoAddress.data.billing_address.first_name" name="first_name" placeholder="First name">
+                    <input matInput id="first_name" type="text" formControlName="billingAddressFirstname" name="first_name" placeholder="First name">
                   </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <input matInput id="last_name" type="text" [(ngModel)]="CustomerInfoAddress.data.billing_address.last_name" name="last_name" placeholder="Last name">
+                        <input matInput id="last_name" type="text" formControlName="billingAddressLastname" name="last_name" placeholder="Last name">
                       </mat-form-field>
                 </td>
             </tr>
           </table>
           <mat-form-field class="thirds">
-              <input matInput id="email" type="email" [(ngModel)]="CustomerInfoAddress.data.customer.email" name="email" placeholder="Email">
+              <input matInput id="email" type="email" formControlName="customerEmail" name="email" placeholder="Email">
             </mat-form-field>
 
           <mat-form-field class="thirds">
-            <input matInput id="line_1" type="text" [(ngModel)]="CustomerInfoAddress.data.billing_address.line_1" name="line_1" placeholder="Street Address">
+            <input matInput id="line_1" type="text" formControlName="billingAddressLine1" name="line_1" placeholder="Street Address">
           </mat-form-field>
           <mat-form-field class="thirds">
-              <input matInput id="line_2" type="text" [(ngModel)]="CustomerInfoAddress.data.billing_address.line_2" name="line_2" placeholder="Street Address Line 2">
+              <input matInput id="line_2" type="text" formControlName="billingAddressLine2" name="line_2" placeholder="Street Address Line 2">
             </mat-form-field>
           <table>
             <tr class="fourths">
               <td>
                   <mat-form-field class="example-full-width">
-                    <input matInput id="city" type="text" class=" thirds" [(ngModel)]="CustomerInfoAddress.data.billing_address.city" name="city" placeholder="City">
+                    <input matInput id="city" type="text" class=" thirds" formControlName="billingAddressCity" name="city" placeholder="City">
                   </mat-form-field>
               </td>
               <td>
                   <mat-form-field class="example-full-width">
-                      <input matInput id="county" type="text" class="thirds" [(ngModel)]="CustomerInfoAddress.data.billing_address.county" name="county" placeholder="State/Province">
+                      <input matInput id="county" type="text" class="thirds" formControlName="billingAddressCounty" name="county" placeholder="State/Province">
                     </mat-form-field>
               </td>
             </tr>
             <tr>
                 <td>
                     <mat-form-field class="example-full-width">
-                        <input matInput id="postcode" type="text" class="thirds" [(ngModel)]="CustomerInfoAddress.data.billing_address.postcode" name="postcode" placeholder="Postal/Zip Code">
+                        <input matInput id="postcode" type="text" class="thirds" formControlName="billingAddressPostcode" name="postcode" placeholder="Postal/Zip Code">
                       </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
-                        <mat-select placeholder="Choose your Country" [(ngModel)]="CustomerInfoAddress.data.billing_address.country" name="country">
+                        <mat-select placeholder="Choose your Country" formControlName="billingAddressCountry" name="country">
                           <mat-option *ngFor="let country of countries" [value]="country">
                             {{ country }}
                           </mat-option>
@@ -69,48 +69,45 @@
               <tr class="fourths">
                 <td>
                     <mat-form-field>
-                      <input matInput id="first_name" type="text" [(ngModel)]="CustomerInfoAddress.data.shipping_address.first_name" name="first_name" placeholder="First name">
+                      <input matInput id="first_name" type="text" formControlName="shippingAddressFirstname" name="first_name" placeholder="First name">
                     </mat-form-field>
                   </td>
                   <td>
                       <mat-form-field>
-                          <input matInput id="last_name" type="text" [(ngModel)]="CustomerInfoAddress.data.shipping_address.last_name" name="last_name" placeholder="Last name">
+                          <input matInput id="last_name" type="text" formControlName="shippingAddressLastname" name="last_name" placeholder="Last name">
                         </mat-form-field>
                   </td>
               </tr>
             </table>
-            <mat-form-field class="thirds">
-                <input matInput id="email" type="email" [(ngModel)]="CustomerInfoAddress.data.shipping_address.email" name="email" placeholder="Email">
-              </mat-form-field>
   
             <mat-form-field class="thirds">
-              <input matInput id="line_1" type="text" [(ngModel)]="CustomerInfoAddress.data.shipping_address.line_1" name="line_1" placeholder="Street Address">
+              <input matInput id="line_1" type="text" formControlName="shippingAddressLine1" name="line_1" placeholder="Street Address">
             </mat-form-field>
             <mat-form-field class="thirds">
-                <input matInput id="line_2" type="text" [(ngModel)]="CustomerInfoAddress.data.shipping_address.line_2" name="line_2" placeholder="Street Address Line 2">
+                <input matInput id="line_2" type="text" formControlName="shippingAddressLine2" name="line_2" placeholder="Street Address Line 2">
               </mat-form-field>
             <table>
               <tr class="fourths">
                 <td>
                     <mat-form-field class="example-full-width">
-                      <input matInput id="city" type="text" class=" thirds" [(ngModel)]="CustomerInfoAddress.data.shipping_address.city" name="city" placeholder="City">
+                      <input matInput id="city" type="text" class=" thirds" formControlName="shippingAddressCity" name="city" placeholder="City">
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field class="example-full-width">
-                        <input matInput id="county" type="text" class="thirds" [(ngModel)]="CustomerInfoAddress.data.shipping_address.county" name="county" placeholder="State/Province">
+                        <input matInput id="county" type="text" class="thirds" formControlName="shippingAddressCounty" name="county" placeholder="State/Province">
                       </mat-form-field>
                 </td>
               </tr>
               <tr>
                   <td>
                       <mat-form-field class="example-full-width">
-                          <input matInput id="postcode" type="text" class="thirds" [(ngModel)]="CustomerInfoAddress.data.shipping_address.postcode" name="postcode" placeholder="Postal/Zip Code">
+                          <input matInput id="postcode" type="text" class="thirds" formControlName="shippingAddressPostcode" name="postcode" placeholder="Postal/Zip Code">
                         </mat-form-field>
                   </td>
                   <td>
                       <mat-form-field>
-                          <mat-select placeholder="Choose your Country" [(ngModel)]="CustomerInfoAddress.data.shipping_address.country" name="country">
+                          <mat-select placeholder="Choose your Country" formControlName="shippingAddressCountry" name="country">
                             <mat-option *ngFor="let country of countries" [value]="country">
                               {{ country }}
                             </mat-option>
@@ -121,11 +118,13 @@
               </tr>
             </table>
             <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Instructions" [(ngModel)]="CustomerInfoAddress.data.shipping_address.instructions" name="instructions"></textarea>
+                <textarea matInput placeholder="Instructions" formControlName="shippingAddressInstructions" name="instructions"></textarea>
               </mat-form-field>
         </div>
+        <div id="card-element" class="field" #card></div>
         <button mat-raised-button color="accent">Submit</button>
       </form>
 
     </div>
   </div>
+  
