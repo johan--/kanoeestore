@@ -10,6 +10,7 @@ import {MatSnackBar} from '@angular/material';
 })
 export class CartComponent implements OnInit {
   cartContents : Cart;
+  cartItemsLength : number;
   constructor(private _moltin : MoltinService, public _snackbar: MatSnackBar) { }
 
   ngOnInit() {

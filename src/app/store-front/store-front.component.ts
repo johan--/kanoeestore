@@ -21,7 +21,6 @@ export class StoreFrontComponent implements OnInit {
 
   ngOnInit() {
     this._moltin.getProducts().then(data => {
-      console.log(data);
       this.userProducts = data.data;
       this.userProductImages = data.included;
     });
@@ -29,10 +28,17 @@ export class StoreFrontComponent implements OnInit {
   }
   addProductToCart(productID){
     this._moltin.addProduct(productID).then(res => {
-      let snackBarRef = this.snackBar.open(`${res.data[0].name} has been added to your cart.`);
-      setTimeout(() =>{
-        snackBarRef.dismiss();
-      },3000)
+      
+      for(var i=0; i < res.data.length; i++){
+        if(res.data[i].product_id === productID){
+            let snackBarRef = this.snackBar.open(`${res.data[i].name} has been added to your cart.`);
+            setTimeout(() =>{
+              snackBarRef.dismiss();
+            },3000);
+            return;
+        }
+      }
+      
     });
     
   }

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { MoltinService } from './moltin.service';
 
 
 @Component({
@@ -6,6 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'suhh';
+export class AppComponent implements OnInit {
+  cartItemsLength : number;
+  constructor(private _moltin : MoltinService) {}
+  ngOnInit (){
+    this._moltin.getCartItems().then( res => {
+      this.cartItemsLength = res.data.length;
+    });
+  }
 }
