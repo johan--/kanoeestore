@@ -30,6 +30,9 @@ export class MoltinService {
       payment: "tok_visa"
     }).then(res => res);
   }
+  moltinRemoveCartItem(itemId:string){
+    return this.Moltin.Cart().RemoveItem(itemId).then(res => res);
+  }
   
 
 }

@@ -32,7 +32,7 @@ export class StoreFrontComponent implements OnInit {
       let snackBarRef = this.snackBar.open(`${res.data[0].name} has been added to your cart.`);
       setTimeout(() =>{
         snackBarRef.dismiss();
-      },2000)
+      },3000)
     });
     
   }
