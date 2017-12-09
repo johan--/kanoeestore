@@ -1,9 +1,9 @@
-
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
 <div class="container">
   <div class="row">
       <form novalidate (ngSubmit)="buy($event)" [formGroup]="stripeTest">
           <div class="useShipping">
-              <mat-slide-toggle [checked]="isBillingChecked" name="slideToggle" (change)="onChange($event)" >Use Biiling Address as Shipping Address</mat-slide-toggle>
+              <mat-slide-toggle [checked]="isBillingChecked" name="slideToggle" (change)="onChange($event)" >Ship to Billing Address?</mat-slide-toggle>
           </div>
         <div class="row" id="billingAddress">
           <h1>Billing Address</h1>

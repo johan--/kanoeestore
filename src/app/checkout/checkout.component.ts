@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
       billingAddressLastname:  ['', [Validators.required]],
       billingAddressCompanyname:  ['', []],
       billingAddressLine1:  ['', [Validators.required]],
-      billingAddressLine2:  ['', [Validators.required]],
+      billingAddressLine2:  ['', []],
       billingAddressCity:  ['', [Validators.required]],
       billingAddressPostcode:  ['', [Validators.required]],
       billingAddressCounty:  ['', [Validators.required]],
@@ -39,7 +39,7 @@ export class CheckoutComponent implements OnInit {
       shippingAddressLastname:  ['', [Validators.required]],
       shippingAddressCompanyname:  ['', []],
       shippingAddressLine1:  ['', [Validators.required]],
-      shippingAddressLine2:  ['', [Validators.required]],
+      shippingAddressLine2:  ['', []],
       shippingAddressCity:  ['', [Validators.required]],
       shippingAddressPostcode:  ['', [Validators.required]],
       shippingAddressCounty:  ['', [Validators.required]],
@@ -140,16 +140,17 @@ export class CheckoutComponent implements OnInit {
     if(this.isBillingChecked){
       this.CustomerInfoAddress.data.shipping_address.first_name = this.CustomerInfoAddress.data.billing_address.first_name ;
       this.CustomerInfoAddress.data.shipping_address.last_name = this.CustomerInfoAddress.data.billing_address.last_name ;
-      this.CustomerInfoAddress.data.shipping_address.company_name = this.CustomerInfoAddress.data.billing_address.company_name ;
       this.CustomerInfoAddress.data.shipping_address.line_1 = this.CustomerInfoAddress.data.billing_address.line_1 ;
       this.CustomerInfoAddress.data.shipping_address.line_2 = this.CustomerInfoAddress.data.billing_address.line_2 ;
       this.CustomerInfoAddress.data.shipping_address.city = this.CustomerInfoAddress.data.billing_address.city ;
       this.CustomerInfoAddress.data.shipping_address.postcode = this.CustomerInfoAddress.data.billing_address.postcode ;
       this.CustomerInfoAddress.data.shipping_address.county = this.CustomerInfoAddress.data.billing_address.county ;
       this.CustomerInfoAddress.data.shipping_address.country = this.CustomerInfoAddress.data.billing_address.country ;
-    }else{
+      this.stripeTest.value.shippingAddressInstructions = '';
       this.CustomerInfoAddress.data.shipping_address.instructions = '';
+
     }
+    console.log(this.CustomerInfoAddress.data);
     
     this._moltin.moltinCheckout(this.CustomerInfoAddress.data.customer, this.CustomerInfoAddress.data.billing_address, this.CustomerInfoAddress.data.shipping_address).then(res => {
       this._moltin.moltinOrder(res.data.id).then(order => {
@@ -174,7 +175,6 @@ export class CheckoutComponent implements OnInit {
   }
   onChange(event){
     this.isBillingChecked = event.checked;
-    console.log(this.isBillingChecked);
   }
 
 }

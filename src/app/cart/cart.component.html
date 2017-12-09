@@ -1,6 +1,31 @@
 <div class="container">
-  <ul>
-    <li *ngFor="let cart of cartContents"></li>
-  </ul>
+    <mat-expansion-panel *ngFor="let contents of cartContents">
+        <mat-expansion-panel-header color="primary">
+          <mat-panel-title>
+            {{contents.name}}
+          </mat-panel-title>
+          <mat-panel-description>
+              
+            
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <p>{{contents.description}}</p>
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                Amount : {{contents.meta.display_price.with_tax.unit.formatted}}
+              </mat-list-item>
+            <mat-list-item role="listitem">
+              Quantity : {{contents.quantity}}
+            </mat-list-item>
+            
+          </mat-list>
+        <mat-action-row>
+            <button mat-raised-button color="warn" (click)="deleteProduct(contents.id)">Delete from cart</button>
+          </mat-action-row>
+      </mat-expansion-panel>
+      <div class="paddingContainer">
+          <button mat-raised-button color="accent"> Go to Checkout</button>
+      </div>
+      
 </div>
-<p>{{cartContents | json}}</p>

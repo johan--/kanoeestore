@@ -5,7 +5,7 @@ body{
     margin: 0;
 }
 .container {
- max-width: 1000px;
+ max-width: 1200px;
  margin:  10px auto;
 }
 .useShipping{
@@ -17,6 +17,14 @@ table{
 mat-form-field.mat-form-field {
     width: 100%;
 }
+.mat-expansion-panel-header{
+    background: #e5e5e5;
+}
+.example-card {
+    max-width: 25%;
+    margin: 0 5px;
+    float: left;
+  }
 /* .thirds{
     width: 33.33%;
 } */
@@ -29,4 +37,7 @@ mat-form-field.mat-form-field {
   
 .example-spacer {
     flex: 1 1 auto;
+}
+.paddingContainer{
+    padding: 10px 0;
 }

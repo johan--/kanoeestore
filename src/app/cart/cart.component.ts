@@ -14,7 +14,12 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this._moltin.getCartItems().then(res => {
       this.cartContents = res.data;
+      console.log(res.data);
     });
+  }
+
+  deleteProduct(id:string){
+    
   }
 
 
