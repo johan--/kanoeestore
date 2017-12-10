@@ -21,13 +21,16 @@
               </mat-list-item>
             <mat-list-item role="listitem">
                 <div class="sm-4">
-                    <mat-form-field> 
-                        <mat-select placeholder="Quantity" [(ngModel)]="quantitySelect">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Quantity" type="number" value="quantity" [(ngModel)]="contents.quantity">
+                      </mat-form-field>
+                    <!-- <mat-form-field> 
+                        <mat-select placeholder="Quantity" >
                           <mat-option *ngFor="let quantity of quantityMax" [value]="quantity">
                             {{ quantity }}
                           </mat-option>
                         </mat-select>
-                      </mat-form-field>
+                      </mat-form-field> -->
                 </div>
             </mat-list-item>
             

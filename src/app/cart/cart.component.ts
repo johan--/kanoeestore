@@ -20,6 +20,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this._moltin.getCartItems().then(res => {
       this.cartContents = res.data;
+      console.log(res.data);
     });
   }
 
@@ -41,9 +42,20 @@ export class CartComponent implements OnInit {
     });;
   }
   updateCart(itemId: string){
+    let quantity : number;
     this.isLoading = true;
-    this._moltin.moltinUpdateItemQuantity(itemId, this.quantitySelect).then(res => {
+    if(itemId){
+      for(let m in this.cartContents){
+        if(this.cartContents[m].id === itemId){
+          // this.cartContents = this.cartContents[m];
+          quantity = this.cartContents[m].quantity;
+        }
+      }
+    }
+    console.log(quantity);    
+    this._moltin.moltinUpdateItemQuantity(itemId, quantity).then(res => {
       let snackBarRef = this._snackbar.open('Item quantity has succesfully updated');
+      
       this.cartContents = res.data;
       this.isLoading = false;
       setTimeout(() => {
