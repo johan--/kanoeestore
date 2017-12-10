@@ -17,6 +17,7 @@ export class CheckoutComponent implements OnInit {
   selectedCountry: Object = {};
   elements: Elements;
   card: StripeElement;
+  isLoading : boolean = false;
   @ViewChild('card') cardRef: ElementRef;
 
   stripeTest: FormGroup;
@@ -105,6 +106,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   buy(){
+    this.isLoading = true;
     this.stripeTest.value.customerName = `${this.stripeTest.value.billingAddressFirstname} ${this.stripeTest.value.billingAddressLastname}`;
     this.CustomerInfoAddress = {
       data: {
@@ -150,11 +152,9 @@ export class CheckoutComponent implements OnInit {
       this.CustomerInfoAddress.data.shipping_address.instructions = '';
 
     }
-    console.log(this.CustomerInfoAddress.data);
     
     this._moltin.moltinCheckout(this.CustomerInfoAddress.data.customer, this.CustomerInfoAddress.data.billing_address, this.CustomerInfoAddress.data.shipping_address).then(res => {
       this._moltin.moltinOrder(res.data.id).then(order => {
-        console.log(order);
         this.stripeService
           .createToken(this.card, { 
             name : this.stripeTest.value.customerName,
@@ -166,9 +166,11 @@ export class CheckoutComponent implements OnInit {
             address_country : this.stripeTest.value.billingAddressCountry
            })
           .subscribe(token => {
+            this.isLoading = false;
             console.log(token);
           });
       }).catch(err => {
+        this.isLoading = false;
         console.log(err);
       });
     });

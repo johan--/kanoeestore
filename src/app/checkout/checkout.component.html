@@ -1,4 +1,7 @@
-<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<div *ngIf="isLoading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
 <div class="container">
   <div class="row">
       <form novalidate (ngSubmit)="buy($event)" [formGroup]="stripeTest">

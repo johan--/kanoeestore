@@ -8,6 +8,9 @@ body{
  max-width: 1200px;
  margin:  10px auto;
 }
+.sm-4{
+    width: 30%;
+}
 .useShipping{
     margin: 10px 0 0;
 }

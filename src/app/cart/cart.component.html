@@ -1,3 +1,7 @@
+<div *ngIf="isLoading">
+    <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
+</div> 
+
 <div class="container">
     <mat-expansion-panel *ngFor="let contents of cartContents">
         <mat-expansion-panel-header color="primary">
@@ -13,19 +17,28 @@
         <p>{{contents.description}}</p>
         <mat-list role="list">
             <mat-list-item role="listitem">
-                Amount : {{contents.meta.display_price.with_tax.unit.formatted}}
+                Amount : {{contents.meta.display_price.with_tax.value.formatted}}
               </mat-list-item>
             <mat-list-item role="listitem">
-              Quantity : {{contents.quantity}}
+                <div class="sm-4">
+                    <mat-form-field> 
+                        <mat-select placeholder="Quantity" [(ngModel)]="quantitySelect">
+                          <mat-option *ngFor="let quantity of quantityMax" [value]="quantity">
+                            {{ quantity }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
             </mat-list-item>
             
           </mat-list>
         <mat-action-row>
-            <button mat-raised-button color="warn" (click)="deleteProduct(contents.id)">Delete from cart</button>
+            <button mat-raised-button color="accent" (click)="updateCart(contents.id)">Update Cart</button> &nbsp;
+            <button mat-raised-button color="warn" (click)="deleteProduct(contents.id)">Delete from Cart</button>
           </mat-action-row>
       </mat-expansion-panel>
       <div class="paddingContainer">
-          <button mat-raised-button color="accent"> Go to Checkout</button>
+          <a routerLink="../checkout" mat-raised-button color="primary"> Go to Checkout</a>
       </div>
       
 </div>

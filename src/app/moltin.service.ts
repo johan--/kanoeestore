@@ -33,6 +33,9 @@ export class MoltinService {
   moltinRemoveCartItem(itemId:string){
     return this.Moltin.Cart().RemoveItem(itemId).then(res => res);
   }
+  moltinUpdateItemQuantity(itemId : string, quantity: number){
+    return this.Moltin.Cart().UpdateItemQuantity(itemId, quantity).then(res => res);
+  }
   
 
 }
